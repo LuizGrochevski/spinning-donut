@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <unistd.h>
 
 int main(void) {
     int k;
@@ -15,16 +16,16 @@ int main(void) {
 
         for (j = 0; j < 6.28; j += 0.07) {
             for (i = 0; i < 6.28; i += 0.02) {
-                float c = sinf(i);
-                float d = cosf(j);
-                float e = sinf(A);
-                float f = sinf(j);
-                float g = cosf(A);
+                float c = sin(i);
+                float d = cos(j);
+                float e = sin(A);
+                float f = sin(j);
+                float g = cos(A);
                 float h = d + 2.0f;
                 float D = 1.0f / (c * h * e + f * g + 5.0f);
-                float l = cosf(i);
-                float m = cosf(B);
-                float n = sinf(B);
+                float l = cos(i);
+                float m = cos(B);
+                float n = sin(B);
                 float t = c * h * g - f * e;
 
                 int x = 40 + (int)(30 * D * (l * h * m - t * n));
@@ -46,6 +47,8 @@ int main(void) {
 
         A += 0.04f;
         B += 0.02f;
+
+	usleep(16000);
     }
 
     return 0;
